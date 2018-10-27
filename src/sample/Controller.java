@@ -6,9 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,6 +19,9 @@ import static java.nio.file.StandardOpenOption.CREATE;
 
 public class Controller {
 
+
+    // TODO: 27.10.2018 реализовать метод remove и (опционально) проверку ID при записи в файл
+    
     @FXML
     TextField fieldID;
     @FXML
@@ -37,7 +38,7 @@ public class Controller {
     private Database database = new Database();
     private ObservableList<String> items = FXCollections.observableArrayList();
     private int curArraySize = database.getAll().size();
-    private ArrayList<Integer> IDs = new ArrayList<>();
+    private ArrayList<Integer> IDs = new ArrayList<>(); // FIXME: 27.10.2018 fix unnecessary ID's
 
     public Controller() {
     }
@@ -83,6 +84,7 @@ public class Controller {
     }
 
     public void pushToFile() {
+        // TODO: 27.10.2018 Можно исправить Path на FileReader
         Path file = Paths.get("./newFile.txt");
         byte[] str;
         try {
